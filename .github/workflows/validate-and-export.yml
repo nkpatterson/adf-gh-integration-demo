@@ -54,8 +54,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
       - name: Pre-Deployment Script
-        run: cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
-        working-directory: ./.github/workflows/scripts
+        run: | 
+          ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
         shell: pwsh
           
       - name: Deploy to ADF-Dev
@@ -66,8 +66,8 @@ jobs:
           resourceGroupName: ${{ secrets.RESOURCE_GROUP_NAME }}
           
       - name: Post-Deployment Script
-        run: cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
-        working-directory: ./.github/workflows/scripts
+        run: |
+          ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
         shell: pwsh
           
   production:

@@ -27,16 +27,16 @@ jobs:
         uses: actions/setup-node@v2.4.0
         
       - name: Install ADF package
-        run: npm install ./build
+        run: npm install ${GITHUB_WORKSPACE}/build
       
       - name: Validate
-        run: npm run build validate ./ /subscriptions/4e4653fe-8540-4bea-86d1-a5a193480a63/resourceGroups/ess-adf-gh-rg/providers/Microsoft.DataFactory/factories/ess-adf-gh
+        run: npm run build validate ${GITHUB_WORKSPACE} /subscriptions/4e4653fe-8540-4bea-86d1-a5a193480a63/resourceGroups/ess-adf-gh-rg/providers/Microsoft.DataFactory/factories/ess-adf-gh
 
       - name: Export
-        run: npm run build export ./ /subscriptions/4e4653fe-8540-4bea-86d1-a5a193480a63/resourceGroups/ess-adf-gh-rg/providers/Microsoft.DataFactory/factories/ess-adf-gh "ArmTemplate"
+        run: npm run build export ${GITHUB_WORKSPACE} /subscriptions/4e4653fe-8540-4bea-86d1-a5a193480a63/resourceGroups/ess-adf-gh-rg/providers/Microsoft.DataFactory/factories/ess-adf-gh "ArmTemplate"
         
       - name: Upload ARM Template as Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           name: ArmTemplate
-          path: ArmTemplate
+          path: ${GITHUB_WORKSPACE}/build/ArmTemplate

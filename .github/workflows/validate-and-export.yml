@@ -58,6 +58,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
+          azPSVersion: '3.1.0'
           
       - name: Deploy to ADF-Dev
         uses: Azure/arm-deploy@v1
@@ -70,6 +71,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
+          azPSVersion: '3.1.0'
           
   production:
     runs-on: ubuntu-latest
@@ -95,6 +97,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
+          azPSVersion: '3.1.0'
         
       - name: Deploy to ADF-Product
         uses: Azure/arm-deploy@v1
@@ -107,3 +110,4 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
+          azPSVersion: '3.1.0'

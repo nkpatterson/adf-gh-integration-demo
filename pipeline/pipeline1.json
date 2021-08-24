@@ -37,7 +37,7 @@
 				"typeProperties": {
 					"variableName": "zen",
 					"value": {
-						"value": "@activity('Web1').output",
+						"value": "@activity('Web1').output.response",
 						"type": "Expression"
 					}
 				}

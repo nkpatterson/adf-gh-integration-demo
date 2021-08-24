@@ -44,6 +44,7 @@ jobs:
         uses: actions/download-artifact@v2.0.10 
         with: 
           name: ArmTemplate
+          path: ArmTemplate
           
       - name: Login to Azure Subscription
         uses: Azure/login@v1 
@@ -53,7 +54,7 @@ jobs:
       - name: Deploy to ADF-Dev
         uses: Azure/arm-deploy@v1
         with: 
-          template: ArmTemplate/ARMTemplateForFactory.json
+          template: ./ArmTemplate/ARMTemplateForFactory.json
           parameters: factoryName=${{ secrets.FACTORY_NAME }}
           resourceGroupName: ${{ secrets.RESOURCE_GROUP_NAME }}
           
@@ -67,6 +68,7 @@ jobs:
         uses: actions/download-artifact@v2.0.10 
         with: 
           name: ArmTemplate
+          path: ArmTemplate
           
       - name: Login to Azure Subscription
         uses: Azure/login@v1 
@@ -76,7 +78,7 @@ jobs:
       - name: Deploy to ADF-Dev
         uses: Azure/arm-deploy@v1
         with: 
-          template: ArmTemplate/ARMTemplateForFactory.json
+          template: ./ArmTemplate/ARMTemplateForFactory.json
           parameters: factoryName=${{ secrets.FACTORY_NAME }}
           resourceGroupName: ${{ secrets.RESOURCE_GROUP_NAME }}
           

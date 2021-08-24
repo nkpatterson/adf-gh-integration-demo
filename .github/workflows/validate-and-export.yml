@@ -40,6 +40,8 @@ jobs:
     needs: [validate]
     
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Get ARM Template
         uses: actions/download-artifact@v2.0.10 
         with: 
@@ -51,12 +53,22 @@ jobs:
         with: 
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
+      - name: Pre-Deployment Script
+        run: cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
+        working-directory: ./.github/workflows/scripts
+        shell: pwsh
+          
       - name: Deploy to ADF-Dev
         uses: Azure/arm-deploy@v1
         with: 
           template: ./ArmTemplate/ARMTemplateForFactory.json
           parameters: factoryName=${{ secrets.FACTORY_NAME }}
           resourceGroupName: ${{ secrets.RESOURCE_GROUP_NAME }}
+          
+      - name: Post-Deployment Script
+        run: cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
+        working-directory: ./.github/workflows/scripts
+        shell: pwsh
           
   production:
     runs-on: ubuntu-latest
@@ -64,6 +76,8 @@ jobs:
     needs: [validate, development]
     
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Get ARM Template
         uses: actions/download-artifact@v2.0.10 
         with: 
@@ -75,10 +89,19 @@ jobs:
         with: 
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
-      - name: Deploy to ADF-Dev
+      - name: Pre-Deployment Script
+        run: cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
+        working-directory: ./.github/workflows/scripts
+        shell: pwsh
+        
+      - name: Deploy to ADF-Product
         uses: Azure/arm-deploy@v1
         with: 
           template: ./ArmTemplate/ARMTemplateForFactory.json
           parameters: factoryName=${{ secrets.FACTORY_NAME }}
           resourceGroupName: ${{ secrets.RESOURCE_GROUP_NAME }}
           
+      - name: Post-Deployment Script
+        run: cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
+        working-directory: ./.github/workflows/scripts
+        shell: pwsh

@@ -52,11 +52,12 @@ jobs:
         uses: Azure/login@v1 
         with: 
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
           
       - name: Pre-Deployment Script
-        run: | 
-          ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
           
       - name: Deploy to ADF-Dev
         uses: Azure/arm-deploy@v1
@@ -66,9 +67,9 @@ jobs:
           resourceGroupName: ${{ secrets.RESOURCE_GROUP_NAME }}
           
       - name: Post-Deployment Script
-        run: |
-          ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
           
   production:
     runs-on: ubuntu-latest
@@ -88,11 +89,12 @@ jobs:
         uses: Azure/login@v1 
         with: 
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
           
       - name: Pre-Deployment Script
-        run: cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
-        working-directory: ./.github/workflows/scripts
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $true -deleteDeployment $false
         
       - name: Deploy to ADF-Product
         uses: Azure/arm-deploy@v1
@@ -102,6 +104,6 @@ jobs:
           resourceGroupName: ${{ secrets.RESOURCE_GROUP_NAME }}
           
       - name: Post-Deployment Script
-        run: cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
-        working-directory: ./.github/workflows/scripts
-        shell: pwsh
+        uses: azure/powershell@v1
+        with:
+          inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true

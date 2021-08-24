@@ -19,7 +19,7 @@
 					"method": "GET",
 					"headers": {
 						"User-Agent": {
-							"value": "@pipeline().parameters.user-agent-name",
+							"value": "@pipeline().parameters.UserAgentName",
 							"type": "Expression"
 						}
 					}
@@ -47,7 +47,7 @@
 			}
 		],
 		"parameters": {
-			"user-agent-name": {
+			"UserAgentName": {
 				"type": "string",
 				"defaultValue": "Awesome-Octocat-App"
 			}

@@ -18,7 +18,10 @@
 					"url": "https://api.github.com/zen",
 					"method": "GET",
 					"headers": {
-						"User-Agent": "Awesome-Octocat-App"
+						"User-Agent": {
+							"value": "@pipeline().parameters.user-agent-name",
+							"type": "Expression"
+						}
 					}
 				}
 			},
@@ -43,6 +46,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"user-agent-name": {
+				"type": "string",
+				"defaultValue": "Awesome-Octocat-App"
+			}
+		},
 		"variables": {
 			"zen": {
 				"type": "String"

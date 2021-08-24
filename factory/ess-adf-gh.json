@@ -1,0 +1,9 @@
+{
+	"name": "ess-adf-gh",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b6288557-8e6e-4b52-9f07-f7bf8f7e1604",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}

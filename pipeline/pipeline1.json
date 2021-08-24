@@ -1,0 +1,53 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://api.github.com/zen",
+					"method": "GET",
+					"headers": {
+						"User-Agent": "Awesome-Octocat-App"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Web1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "zen",
+					"value": {
+						"value": "@activity('Web1').output",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"zen": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}

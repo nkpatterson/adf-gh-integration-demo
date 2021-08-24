@@ -38,7 +38,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "zen",
+					"variableName": "zenOutput",
 					"value": {
 						"value": "@activity('Web1').output.response",
 						"type": "Expression"
@@ -50,6 +50,11 @@
 			"user-agent-name": {
 				"type": "string",
 				"defaultValue": "Awesome-Octocat-App"
+			}
+		},
+		"variables": {
+			"zenOutput": {
+				"type": "String"
 			}
 		},
 		"annotations": []

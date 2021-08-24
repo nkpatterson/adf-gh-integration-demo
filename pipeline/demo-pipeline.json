@@ -52,11 +52,6 @@
 				"defaultValue": "Awesome-Octocat-App"
 			}
 		},
-		"variables": {
-			"zen": {
-				"type": "String"
-			}
-		},
 		"annotations": []
 	}
 }

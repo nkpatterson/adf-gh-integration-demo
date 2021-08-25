@@ -1,0 +1,26 @@
+name: "Validate ADF Configuration"
+
+on:
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.4.0
+        
+      - name: Install ADF package
+        run: npm install
+        working-directory: ./build
+      
+      - name: Validate
+        run: npm run build validate ${GITHUB_WORKSPACE} /subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.RESOURCE_GROUP_NAME }}/providers/Microsoft.DataFactory/factories/${{ secrets.FACTORY_NAME }}
+        working-directory: ./build

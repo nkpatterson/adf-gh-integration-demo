@@ -112,9 +112,12 @@ jobs:
           inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
           azPSVersion: '3.1.0'
           
+      - name: Zip artifacts
+        run: zip -r armtemplate.zip ArmTemplate
+          
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "./ArmTemplate/*"
+          artifacts: "armtemplate.zip"
           tag: "v1.0.0"
           commit: "main"
           token: ${{ secrets.GITHUB_TOKEN }}

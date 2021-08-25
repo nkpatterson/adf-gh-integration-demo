@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://jsonplaceholder.typicode.com/todos/1",
+					"url": "https://api.github.com/zen",
 					"method": "GET",
 					"headers": {
 						"User-Agent": {
@@ -40,7 +40,7 @@
 				"typeProperties": {
 					"variableName": "zenOutput",
 					"value": {
-						"value": "@activity('Web1').output.title",
+						"value": "@activity('Web1').output.response",
 						"type": "Expression"
 					}
 				}

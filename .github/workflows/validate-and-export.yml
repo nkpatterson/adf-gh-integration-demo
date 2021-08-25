@@ -117,6 +117,7 @@ jobs:
           
       - uses: ncipollo/release-action@v1
         with:
+          allowUpdates: true
           artifacts: "armtemplate.zip"
           tag: "v1.0.0"
           commit: "main"

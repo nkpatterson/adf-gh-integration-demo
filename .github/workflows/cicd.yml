@@ -112,8 +112,14 @@ jobs:
           inlineScript: ./.github/workflows/scripts/cicd.ps1 -armTemplate "./ArmTemplate/ARMTemplateForFactory.json" -ResourceGroupName ${{ secrets.RESOURCE_GROUP_NAME }} -DataFactoryName ${{ secrets.FACTORY_NAME }} -predeployment $false -deleteDeployment $true
           azPSVersion: '3.1.0'
           
-      - name: Zip artifacts
+      - name: Zip Artifacts
         run: zip -r armtemplate.zip ArmTemplate
+        
+      - name: Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - uses: ncipollo/release-action@v1
         with:
@@ -121,4 +127,5 @@ jobs:
           artifacts: "armtemplate.zip"
           tag: "v1.0.0"
           commit: "main"
+          body: ${{steps.github_release.outputs.changelog}}
           token: ${{ secrets.GITHUB_TOKEN }}

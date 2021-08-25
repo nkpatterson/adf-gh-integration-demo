@@ -1,4 +1,4 @@
-name: "Validate and Export"
+name: "Validate, Export and Deploy"
 
 on:
   push:

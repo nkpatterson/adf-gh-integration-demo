@@ -1,4 +1,4 @@
-name: "Validate, Export and Deploy"
+name: "Export and Deploy"
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
       - uses: actions/checkout@v2
@@ -21,11 +22,11 @@ jobs:
         working-directory: ./build
       
       - name: Validate
-        run: npm run build validate ${GITHUB_WORKSPACE} /subscriptions/4e4653fe-8540-4bea-86d1-a5a193480a63/resourceGroups/ess-adf-gh-rg/providers/Microsoft.DataFactory/factories/ess-adf-gh
+        run: npm run build validate ${GITHUB_WORKSPACE} /subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.RESOURCE_GROUP_NAME }}/providers/Microsoft.DataFactory/factories/${{ secrets.FACTORY_NAME }}
         working-directory: ./build
 
       - name: Export
-        run: npm run build export ${GITHUB_WORKSPACE} /subscriptions/4e4653fe-8540-4bea-86d1-a5a193480a63/resourceGroups/ess-adf-gh-rg/providers/Microsoft.DataFactory/factories/ess-adf-gh "ArmTemplate"
+        run: npm run build export ${GITHUB_WORKSPACE} /subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.RESOURCE_GROUP_NAME }}/providers/Microsoft.DataFactory/factories/${{ secrets.FACTORY_NAME }} "ArmTemplate"
         working-directory: ./build
         
       - name: Upload ARM Template as Artifact

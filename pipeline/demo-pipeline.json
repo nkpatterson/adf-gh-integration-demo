@@ -16,7 +16,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": "https://api.github.com/zen",
-					"method": "GET",
 					"headers": {
 						"User-Agent": {
 							"value": "@pipeline().parameters.UserAgentName",

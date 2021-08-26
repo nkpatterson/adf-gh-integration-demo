@@ -5,6 +5,7 @@ This repo contains assets that can be used to demonstrate an integrated CI/CD wo
 ![Workflow Diagram](https://docs.microsoft.com/en-us/azure/data-factory/media/continuous-integration-deployment-improvements/new-ci-cd-flow.png)
 
 ## Resources
+* [Instructions on setting up GitHub SCM integration in ADF](https://docs.microsoft.com/en-us/azure/data-factory/source-control#author-with-github-integration)
 * [CI/CD in Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment)
 * [Automated Publsihing in Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment-improvements)
 * [Pre/Post-Deployment Script Example for ADF Triggers](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment#script)
@@ -15,26 +16,26 @@ This repo contains assets that can be used to demonstrate an integrated CI/CD wo
 * [Azure Data Factory Node Package](https://www.npmjs.com/package/@microsoft/azure-data-factory-utilities)
 
 ## Demo Setup
-1. In Azure, create 2 ADF's, 1 for Dev and 1 for Prod 
-   1. Skip Git configuration for now
-1. Create a service principal using the following script and save the output to a file
-   1. az ad sp create-for-rbac --name "{sp-name}" --sdk-auth --role contributor --scopes /subscriptions/{subscription-id}
+1. In Azure, create 2 Azure Data Factories, 1 representing Development and 1 representing Production
+   1. Skip Git Configuration on both for now
+1. In Cloud Shell, create a service principal using the following script, substituting {sp-name} with a unique name and {subscription-id} with your Azure Subscription GUID, and save the output to a file
+   1. `az ad sp create-for-rbac --name "{sp-name}" --sdk-auth --role contributor --scopes /subscriptions/{subscription-id}`
 1. In GitHub, create a new repo
-	 1. Make sure to check the box to create a README
+   1. Make sure to check the box to create a README
 1. In GitHub repo, click Settings > Environments
 1. Create the following Environments:
    1. Development
    1. Production
 1. In the settings for Development Environment, add the following Environment Secrets
-   1. AZURE_CREDENTIALS
+   1. `AZURE_CREDENTIALS`
 	    1. Copy/Paste contents of service principal output
-   1. FACTORY_NAME
+   1. `FACTORY_NAME`
       1. Specify the development ADF instance name
-   1. RESOURCE_GROUP_NAME
+   1. `RESOURCE_GROUP_NAME`
       1. Specify the resource group name that contains the development ADF instance
-   1. SUBSCRIPTION_ID
+   1. `SUBSCRIPTION_ID`
       1. Specify the Azure Subscription ID that contains the development ADF instance
-1. Repeat these instructions for the Production Environment, changing the credentials/names/ids/etc. for the production ADF instance
+1. Repeat these instructions for the Production Environment, changing the credentials, names, IDs, etc. for the production ADF instance
 1. In the Production Environment, add one or more Required Reviewers
 1. In the Production Environment, add a deployment branch rule and set to "main"
 1. In Code tab of Repo, click Add file > Create new file
@@ -59,23 +60,24 @@ This repo contains assets that can be used to demonstrate an integrated CI/CD wo
         1. User-Agent = Awesome-GitHub-Demo
 1. Save and Debug to make sure it works
 1. Change the branch back to main and observe how there is no pipeline or updates in that branch and go back to new feature branch to see them reappear
-1. Create a Pull Request from branch dropdown
-1. In body of Pull Request, type "Resolves #" and then select the Issue that was created earlier to link PR to Issue
-1. Continue to Open PR 
-1. Observe the "Validate ADF Configuration" check firing
-1. Click into the Check to view the summary details
-1. Click ellipsis and View Workflow File
-1. Go over the trigger and what the workflow does (validates the ADF instance specified)
-1. In ADF Studio, change the pipeline to be invalid and save
-1. Observe the Check failing immediately in the PR
-1. Go back to PR and Merge Changes once check passes
-1. Go to Actions tab and observe Export and Deploy workflow running
-1. Highlight the different environments in the visualization and then go to Settings > Environments to show details
-1. Show the logs for each stage and then go to the .github/workflows/cicd.yml file and discuss
-1. Observe the deploy pausing after successfully pushing to development
-1. Go to ADF Studio and observe that the changes are now in the main branch
-1. Go back to GitHub and approve the deploy to Production
-1. While waiting to ADF Studio for production instance and observe there is nothing there
-1. Wait for deploy to complete and observe changes being applied in ADF Studio
-1. In GitHub, show the Release that was created and that the initiating Issue was closed
-1. Optional: create another feature branch in dev ADF and update pipeline with changes and watch process end-to-end again
+1. Create a Pull Request from branch dropdown in ADF Studio
+1. In body of Pull Request in GitHub, type "Resolves #" and then select the Issue that was created earlier to link PR to Issue
+   1. The `Resolves #` syntax will automatically close the Issue when the PR is merged successfully
+3. Continue to Open PR 
+4. Observe the "Validate ADF Configuration" check firing on the PR page
+5. Click into the Check to view the summary details
+6. Click the Ellipsis (top right) and select View Workflow File
+7. Go over the Action trigger and what the workflow does (validates the ADF instance specified)
+8. In ADF Studio, change the pipeline to be invalid and save
+9. Observe the Check failing immediately in the PR in GitHub
+10. Go back to PR and Merge Changes once check passes
+11. Go to Actions tab and observe Export and Deploy workflow running
+12. Highlight the different environments in the visualization and then go to Settings > Environments to show details
+13. Show the logs for each stage and then go to the .github/workflows/cicd.yml file and discuss
+14. Observe the deploy pausing after successfully pushing to Development
+15. Go to ADF Studio and observe that the changes are now in the main branch in Development ADF instance
+16. Go back to GitHub and approve the deploy to Production
+17. While waiting, go to ADF Studio for Production instance and observe there is nothing there
+18. Wait for deploy to complete and observe changes being applied in ADF Studio
+19. In GitHub, show the Release that was created on Code tab and that the initiating Issue was closed
+20. Optional: create another feature branch in dev ADF and update pipeline with changes and watch process end-to-end again

@@ -24,6 +24,22 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Web1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 60
+				}
 			}
 		],
 		"parameters": {

@@ -24,26 +24,6 @@
 						}
 					}
 				}
-			},
-			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "Web1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "zenOutput",
-					"value": {
-						"value": "@activity('Web1').output.title",
-						"type": "Expression"
-					}
-				}
 			}
 		],
 		"parameters": {

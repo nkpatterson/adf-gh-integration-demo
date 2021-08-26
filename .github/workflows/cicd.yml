@@ -19,17 +19,15 @@ jobs:
         
       - name: Install ADF package
         run: npm install
-        working-directory: ./build
 
       - name: Export
         run: npm run build export ${GITHUB_WORKSPACE} /subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.RESOURCE_GROUP_NAME }}/providers/Microsoft.DataFactory/factories/${{ secrets.FACTORY_NAME }} "ArmTemplate"
-        working-directory: ./build
         
       - name: Upload ARM Template as Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           name: ArmTemplate
-          path: ./build/ArmTemplate
+          path: ArmTemplate
           
   development:
     runs-on: ubuntu-latest

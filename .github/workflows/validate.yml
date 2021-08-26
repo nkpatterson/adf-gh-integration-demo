@@ -19,8 +19,6 @@ jobs:
         
       - name: Install ADF package
         run: npm install
-        working-directory: ./build
       
       - name: Validate
         run: npm run build validate ${GITHUB_WORKSPACE} /subscriptions/${{ secrets.SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.RESOURCE_GROUP_NAME }}/providers/Microsoft.DataFactory/factories/${{ secrets.FACTORY_NAME }}
-        working-directory: ./build

@@ -1,4 +1,3 @@
-[![Export and Deploy](https://github.com/US-SouthOU-Demo/adf-gh-integration-demo/actions/workflows/cicd.yml/badge.svg)](https://github.com/US-SouthOU-Demo/adf-gh-integration-demo/actions/workflows/cicd.yml)
 # Azure Data Factory + GitHub Integration Demo
 This repo contains assets that can be used to demonstrate an integrated CI/CD workflow between Azure Data Factory and GitHub Enterprise. It is based on [this documentation](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment-improvements) but, instead of Azure Pipelines, we are using GitHub Actions for automating deployments.
 

@@ -1,12 +1,12 @@
 # Azure Data Factory + GitHub Integration Demo
-This repo contains assets that can be used to demonstrate an integrated CI/CD workflow between Azure Data Factory and GitHub Enterprise. It is based on [this documentation](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment-improvements) but, instead of Azure Pipelines, we are using GitHub Actions for automating deployments.
+This repo contains assets that can be used to demonstrate an integrated CI/CD workflow between Azure Data Factory and GitHub Enterprise. It is based on [this documentation](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-improvements) but, instead of Azure Pipelines, we are using GitHub Actions for automating deployments.
 
 ![Workflow Diagram](https://docs.microsoft.com/en-us/azure/data-factory/media/continuous-integration-deployment-improvements/new-ci-cd-flow.png)
 
 ## Resources
 * [Instructions on setting up GitHub SCM integration in ADF](https://docs.microsoft.com/en-us/azure/data-factory/source-control#author-with-github-integration)
 * [CI/CD in Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment)
-* [Automated Publsihing in Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment-improvements)
+* [Automated Publsihing in Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-improvements)
 * [Pre/Post-Deployment Script Example for ADF Triggers](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment#script)
 * [Azure Login Action](https://github.com/marketplace/actions/azure-login)
 * [Azure Powershell Action](https://github.com/marketplace/actions/azure-powershell-action)

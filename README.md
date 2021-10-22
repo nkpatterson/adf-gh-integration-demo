@@ -39,13 +39,13 @@ This repo contains assets that can be used to demonstrate an integrated CI/CD wo
 1. In the Production Environment, add one or more Required Reviewers
 1. In the Production Environment, add a deployment branch rule and set to "main"
 1. In Code tab of Repo, click Add file > Create new file
-   1. Add the following [file contents](https://raw.githubusercontent.com/US-SouthOU-Demo/adf-gh-integration-demo/main/.github/workflows/validate.yml?token=AACCAMOW6O66FEES3KRRYCLBF7I3S) to ".github/workflows/validate.yml"
+   1. Add the following [file contents](https://raw.githubusercontent.com/nkpatterson/adf-gh-integration-demo/main/.github/workflows/validate.yml?token=AACCAMOW6O66FEES3KRRYCLBF7I3S) to ".github/workflows/validate.yml"
 1. Add another file
-   1. Add the following [file contents](https://raw.githubusercontent.com/US-SouthOU-Demo/adf-gh-integration-demo/main/.github/workflows/cicd.yml?token=AACCAMMJDVKDSXLHIXLRA6LBF7JBK) to ".github/workflows/cicd.yml
+   1. Add the following [file contents](https://raw.githubusercontent.com/nkpatterson/adf-gh-integration-demo/main/.github/workflows/cicd.yml?token=AACCAMMJDVKDSXLHIXLRA6LBF7JBK) to ".github/workflows/cicd.yml
 1. Add another file
-   1. Add the following [file contents](https://raw.githubusercontent.com/US-SouthOU-Demo/adf-gh-integration-demo/main/.github/workflows/scripts/cicd.ps1?token=AACCAMMD4F5JJZJ4ZRH3IC3BF7JDM) to ".github/workflows/scripts/cicd.ps1
+   1. Add the following [file contents](https://raw.githubusercontent.com/nkpatterson/adf-gh-integration-demo/main/.github/workflows/scripts/cicd.ps1?token=AACCAMMD4F5JJZJ4ZRH3IC3BF7JDM) to ".github/workflows/scripts/cicd.ps1
 1. Add another file
-   1. Add the following [file contents](https://raw.githubusercontent.com/US-SouthOU-Demo/adf-gh-integration-demo/main/package.json?token=AACCAMOAWEC67ZATT3NP5EDBGDGGU) to root "package.json"
+   1. Add the following [file contents](https://raw.githubusercontent.com/nkpatterson/adf-gh-integration-demo/main/package.json?token=AACCAMOAWEC67ZATT3NP5EDBGDGGU) to root "package.json"
 
 ## Demo Walkthrough
 1. In GitHub, create a new Issue and titled "Create a new demo pipeline" and assign to self

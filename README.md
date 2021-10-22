@@ -7,7 +7,7 @@ This repo contains assets that can be used to demonstrate an integrated CI/CD wo
 * [Instructions on setting up GitHub SCM integration in ADF](https://docs.microsoft.com/en-us/azure/data-factory/source-control#author-with-github-integration)
 * [CI/CD in Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment)
 * [Automated Publsihing in Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-improvements)
-* [Pre/Post-Deployment Script Example for ADF Triggers](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment#script)
+* [Pre/Post-Deployment Script Example for ADF Triggers](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-delivery-sample-script)
 * [Azure Login Action](https://github.com/marketplace/actions/azure-login)
 * [Azure Powershell Action](https://github.com/marketplace/actions/azure-powershell-action)
 * [Azure ARM Template Deploy Action](https://github.com/marketplace/actions/deploy-azure-resource-manager-arm-template)
